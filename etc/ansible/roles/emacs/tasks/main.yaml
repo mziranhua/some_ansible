@@ -1,0 +1,7 @@
+- name: InstallEmacs
+  yum: pkg=emacs-nox state=installed update_cache=true
+  register: EmacsInstalled
+  
+- name: AddBackupsConfig
+  when: EmacsInstalled|success
+  copy: src=backups.el dest=/usr/share/emacs/site-lisp/site-start.d owner=root group=root

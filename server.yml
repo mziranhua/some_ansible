@@ -1,0 +1,9 @@
+---
+- hosts: docker
+  roles:
+    - docker
+
+- hosts: all
+  roles:
+    - emacs
+

@@ -1,0 +1,15 @@
+---
+
+- name: CreateDockerGroup
+  group:
+    name: docker
+    state: present
+
+- name: AddVagrantToDockerGroup
+  user: name=vagrant groups=docker append=yes
+
+- name: Install docker
+  yum: pkg=docker state=installed update_cache=true
+  register: dockerinstalled
+  notify:
+    - Start docker
